@@ -1,1 +1,63 @@
+name: Build Addon
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set version
+        id: version
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          else
+            VERSION=$(date +%Y%m%d)-dev
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "$VERSION" > src/addon/VERSION
+          echo "Building version $VERSION"
+
+      - name: Build tgz
+        run: |
+          cd src
+          tar -czf ../hb-addon-${{ steps.version.outputs.VERSION }}.tgz \
+            rc.d addon update_script
+          echo "Built: hb-addon-${{ steps.version.outputs.VERSION }}.tgz"
+          ls -lh ../hb-addon-*.tgz
+
+      - name: Upload artifact (dev builds)
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        uses: actions/upload-artifact@v4
+        with:
+          name: hb-addon-dev
+          path: hb-addon-*.tgz
+          retention-days: 7
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: hb-addon-*.tgz
+          generate_release_notes: true
+          body: |
+            ## HB-UNI-Sen-POOL-WP Addon v${{ steps.version.outputs.VERSION }}
+
+            ### Installation
+            1. OpenCCU WebUI → Einstellungen → Systemsteuerung → Zusatzsoftware
+            2. `hb-addon-${{ steps.version.outputs.VERSION }}.tgz` hochladen
+            3. Nach Reboot fertig
+
+            ### Unterstützte Geräte
+            | Gerät | Modell |
+            |-------|--------|
+            | HB-UNI-Sen-POOL-WP | 0xFC60 |
 
