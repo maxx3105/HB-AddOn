@@ -120,6 +120,10 @@ do_install() {
     add_st "UNI_PRESSURE"                                  "stringTableUniPressure"
     add_st "HB_GENERIC|TEMPERATURE_OFFSET_3"              "stringTableHbTemperatureOffset3"
     add_st "TEMPERATURE_OFFSET_3"                          "stringTableHbTemperatureOffset3"
+    # HB-UNI-Sen-EC
+    add_st "HB_GENERIC|HB_EC"                             "stringTableHbEc"
+    add_st "HB_GENERIC|TEMPERATURE_OFFSET"                "stringTableTemperatureOffset"
+    add_st "TEMPERATURE_OFFSET"                            "stringTableTemperatureOffset"
 
     # Deutsch – in extension.js UND stringtable.js
     # (extension.js = Statusansicht, stringtable.js = Kanalparameter-Ansicht)
@@ -139,6 +143,8 @@ do_install() {
         add_tr "${F}" "stringTableHbTemperatureOffset1"   "Temperatur-Offset Sensor 1"
         add_tr "${F}" "stringTableHbTemperatureOffset2"   "Temperatur-Offset Sensor 2"
         add_tr "${F}" "stringTableHbTemperatureOffset3"   "Temperatur-Offset Sensor 3"
+        add_tr "${F}" "stringTableHbEc"                   "Elektrische Leitf%E4higkeit"
+        add_tr "${F}" "stringTableTemperatureOffset"       "Temperatur-Offset"
     done
     # infoStatusControlLbl: nur in extension.js (dort bereits als Standard vorhanden,
     # wird durch den Komma-Fix jetzt korrekt aufgeloest)
@@ -162,6 +168,8 @@ do_install() {
         add_tr "${F}" "stringTableHbTemperatureOffset1"   "Temperature offset sensor 1"
         add_tr "${F}" "stringTableHbTemperatureOffset2"   "Temperature offset sensor 2"
         add_tr "${F}" "stringTableHbTemperatureOffset3"   "Temperature offset sensor 3"
+        add_tr "${F}" "stringTableHbEc"                   "Electrical conductivity"
+        add_tr "${F}" "stringTableTemperatureOffset"       "Temperature offset"
     done
     add_tr "${EXTENSION_EN}" "infoStatusControlLblOpen"   "Open"
     add_tr "${EXTENSION_EN}" "infoStatusControlLblClosed" "Closed"
@@ -180,6 +188,13 @@ do_uninstall() {
     del_st "TEMPERATURE_OFFSET_3"
     for F in "${EXTENSION_DE}" "${EXTENSION_EN}" "${STRINGTABLE_JS_DE}" "${STRINGTABLE_JS_EN}"; do
         del_tr "${F}" "stringTableHbTemperatureOffset3"
+    del_tr "${EXTENSION_DE}" "stringTableHbEc"
+    del_tr "${EXTENSION_EN}" "stringTableHbEc"
+    del_tr "${STRINGTABLE_JS_DE}" "stringTableHbEc"
+    del_tr "${STRINGTABLE_JS_EN}" "stringTableHbEc"
+    del_st "HB_GENERIC|HB_EC"
+    del_st "HB_GENERIC|TEMPERATURE_OFFSET"
+    del_st "TEMPERATURE_OFFSET"
     done
     del_tr "${EXTENSION_DE}" "infoStatusControlLblOpen"
     del_tr "${EXTENSION_DE}" "infoStatusControlLblClosed"

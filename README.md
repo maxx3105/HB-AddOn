@@ -230,5 +230,3 @@ Da `/www` auf OpenCCU read-only gemountet ist, verwendet das Addon `sed` mit Mar
 ## Lizenz
 
 [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-
-https://icons8.com/

@@ -26,7 +26,7 @@ chmod +x ${RC_DIR}/$ADDON_NAME
 
 # Create addon directory and copy files
 mkdir -p ${ADDON_DIR}
-cp -af addon/* ${ADDON_DIR}
+cp -af addon/* ${ADDON_DIR}/
 chmod 755 ${ADDON_DIR}
 
 sync
