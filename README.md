@@ -2,7 +2,7 @@
 
 Homematic/OpenCCU Addon für den **HB-UNI-Sen-POOL-WP** Pool-Wärmepumpen-Controller.
 
-Basiert auf [AskSin++](https://github.com/pa-pa/AskSinPP) von jp112sdl.
+Basiert auf [AskSin++](https://github.com/pa-pa/AskSinPP) von pa-pa und jp112sdl.
 
 ## Unterstützte Geräte
 
