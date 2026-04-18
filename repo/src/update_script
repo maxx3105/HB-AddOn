@@ -1,0 +1,36 @@
+#!/bin/sh
+
+target="UNDEFINED"
+if [ "$1" != "" ]; then
+  target=$1
+fi
+echo "TARGET="$target
+
+if [ "$1" = "CCU2" ]; then
+  mount -t ubifs ubi1:user /usr/local
+elif [ "$1" = "HM-RASPBERRYMATIC" ] || [ "$1" = "CCU3" ]; then
+  mount /usr/local
+elif [ "$1" = "" ]; then
+  echo "NOTHING TO MOUNT"
+else
+  exit 14
+fi
+
+ADDON_NAME=hb-addon
+RC_DIR=/usr/local/etc/config/rc.d
+ADDON_DIR=/usr/local/addons/${ADDON_NAME}-new
+
+# Copy rc.d startscript
+cp -af rc.d/$ADDON_NAME ${RC_DIR}/
+chmod +x ${RC_DIR}/$ADDON_NAME
+
+# Create addon directory and copy files
+mkdir -p ${ADDON_DIR}
+cp -af addon/* ${ADDON_DIR}/
+chmod 755 ${ADDON_DIR}
+
+sync
+
+if [ "$1" = "HM-RASPBERRYMATIC" ] || [ "$1" = "CCU3" ]; then
+  exit 10
+fi
