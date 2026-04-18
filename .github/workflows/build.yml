@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        uses: actions/upload-artifact@v4
 
       - name: Set version
         id: version
