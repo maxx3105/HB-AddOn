@@ -3,13 +3,12 @@ name: Build Addon
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,17 +23,13 @@ jobs:
           fi
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
           echo "$VERSION" > src/addon/VERSION
-          echo "Building version $VERSION"
 
       - name: Build tgz
         run: |
           cd src
-          tar -czf ../hb-addon-${{ steps.version.outputs.VERSION }}.tgz \
-            rc.d addon update_script
-          echo "Built: hb-addon-${{ steps.version.outputs.VERSION }}.tgz"
-          ls -lh ../hb-addon-*.tgz
+          tar -czf ../hb-addon-${{ steps.version.outputs.VERSION }}.tgz rc.d addon update_script
 
-      - name: Upload artifact (dev builds)
+      - name: Upload artifact
         if: "!startsWith(github.ref, 'refs/tags/')"
         uses: actions/upload-artifact@v4
         with:
@@ -48,16 +43,3 @@ jobs:
         with:
           files: hb-addon-*.tgz
           generate_release_notes: true
-          body: |
-            ## HB-UNI-Sen-POOL-WP Addon v${{ steps.version.outputs.VERSION }}
-
-            ### Installation
-            1. OpenCCU WebUI → Einstellungen → Systemsteuerung → Zusatzsoftware
-            2. `hb-addon-${{ steps.version.outputs.VERSION }}.tgz` hochladen
-            3. Nach Reboot fertig
-
-            ### Unterstützte Geräte
-            | Gerät | Modell |
-            |-------|--------|
-            | HB-UNI-Sen-POOL-WP | 0xFC60 |
-
