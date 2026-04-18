@@ -38,7 +38,7 @@ Basiert auf [AskSin++](https://github.com/pa-pa/AskSinPP) von [pa-pa](https://gi
 
 1. OpenCCU WebUI → **Einstellungen** → **Geräte anlernen**
 2. Anlernmodus am Gerät aktivieren (Config-Taste kurz drücken)
-3. Das Gerät erscheint automatisch in der Geräteliste
+3. Das Gerät erscheint automatisch im Geräte-Posteingang
 
 ### Kanalübersicht HB-UNI-Sen-POOL-WP
 
