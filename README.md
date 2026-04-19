@@ -41,6 +41,41 @@ Basiert auf [AskSin++](https://github.com/pa-pa/AskSinPP) von [pa-pa](https://gi
 2. Anlernmodus am Gerät aktivieren (Config-Taste kurz drücken)
 3. Das Gerät erscheint automatisch in der Geräteliste
 
+### Kanalübersicht HB-UNI-Sen-POOL-WP
+
+| Kanal | Typ | Funktion |
+|-------|-----|----------|
+| 1 | HB_GENERIC | Messwerte: Temp1/2/3, pH, ORP, Druck, Durchfluss |
+| 2 | WEATHER | Temperatur Sensor 2 |
+| 3 | WEATHER | Temperatur Sensor 3 (Luft/Frostschutz) |
+| 4–6 | SHUTTER_CONTACT | Digitaleingänge (z.B. Strömungswächter, Druckschalter) |
+| 7–10 | SWITCH | Relaisausgänge (Pumpe, Wärmepumpe, Ventile etc.) |
+
+### Geräteparameter
+
+| Parameter | Beschreibung | Standard |
+|-----------|--------------|---------|
+| HB_MEASURE_INTERVAL | Messintervall in Sekunden | 10 s |
+| HBWEA_TRANSMIT_INTERVAL | Sendeintervall (alle X Messungen) | 18 |
+| Beleuchtungsdauer | LCD-Backlight Einschaltdauer | 60 s |
+
+### Kanalparameter (Kanal 1)
+
+| Parameter | Beschreibung | Standard |
+|-----------|--------------|---------|
+| ORP-Offset | Kalibrieroffset für ORP-Sensor in mV | 0 mV |
+| Temperatur-Offset Sensor 1–3 | Feinabgleich der NTC-Sensoren | 0.0K |
+| Flow-Sensor Q-Faktor | Kalibrierungsfaktor für Durchflussmesser | 1.0 |
+| Umschalt-Wartezeit | Wartezeit beim Umschalten pH/ORP-Sensor | 200 ms |
+
+### pH-Sensor Kalibrierung
+
+1. Langen Tastendruck auf den Config-Button → Kalibriermodus startet
+2. Schritt 1: pH 7.0 Pufferlösung einlegen → kurzen Tastendruck
+3. Schritt 2: pH 4.0 Pufferlösung einlegen → kurzen Tastendruck
+4. Kalibrierung wird automatisch gespeichert
+5. Zum Beenden: langen Tastendruck oder automatischer Timeout nach 15 Minuten
+
 ### Versionsprüfung
 
 Das Addon prüft beim Aufruf der Info-Seite in der WebUI automatisch ob eine neue Version auf GitHub verfügbar ist:
