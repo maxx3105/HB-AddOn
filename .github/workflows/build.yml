@@ -67,3 +67,5 @@ jobs:
             | Gerät | Modell-ID | Beschreibung |
             |-------|-----------|--------------|
             | HB-UNI-Sen-POOL-WP | 0xFC60 | Pool-Wärmepumpen-Controller |
+            | HB-UNI-Sen-EC | 0xFC20 | EC-Sensor (Elektrische Leitfähigkeit) |
+            | HB-UNI-Sen-TDS | 0xFC30 | TDS-Sensor (Total Dissolved Solids) |
