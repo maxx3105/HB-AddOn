@@ -15,6 +15,7 @@ Basiert auf [AskSin++](https://github.com/pa-pa/AskSinPP) von [pa-pa](https://gi
 |-------|-----------|--------------|
 | [HB-UNI-Sen-POOL-WP](https://github.com/maxx3105/HB-UNI-Sen-POOL-WP) | 0xFC60 | Pool-Wärmepumpen-Controller |
 | [HB-UNI-Sen-EC](https://github.com/maxx3105/HB-UNI-Sen-EC) | 0xFC20 | EC-Sensor (Elektrische Leitfähigkeit) |
+| [HB-UNI-Sen-TDS](https://github.com/maxx3105/HB-UNI-Sen-TDS) | 0xFC30 | TDS-Sensor (Total Dissolved Solids) |
 
 ---
 
