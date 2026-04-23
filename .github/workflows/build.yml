@@ -35,11 +35,19 @@ jobs:
           echo "$VERSION" > src/addon/VERSION
           echo "Building version $VERSION"
 
+      - name: Set execute permissions
+        run: |
+          chmod +x src/update_script
+          chmod +x src/rc.d/hb-addon
+          chmod +x src/addon/inst_*.sh
+
       - name: Build tgz
         run: |
           cd src
           tar -czf ../hb-addon-${{ steps.version.outputs.VERSION }}.tgz rc.d addon update_script
           ls -lh ../hb-addon-*.tgz
+          # Permissions im tgz verifizieren
+          tar -tvf ../hb-addon-*.tgz | grep -E "update_script|hb-addon$|inst_"
 
       - name: Upload artifact (manual builds)
         if: github.event_name == 'workflow_dispatch'
@@ -65,7 +73,7 @@ jobs:
 
             ### Unterstützte Geräte
             | Gerät | Modell-ID | Beschreibung |
-            |-------|-----------|--------------|
-            | HB-UNI-Sen-POOL-WP | 0xFC60 | Pool-Wärmepumpen-Controller |
-            | HB-UNI-Sen-EC | 0xFC20 | EC-Sensor (Elektrische Leitfähigkeit) |
-            | HB-UNI-Sen-TDS | 0xFC30 | TDS-Sensor (Total Dissolved Solids) |
+            |-------|-----------|--------------| 
+            | [HB-UNI-Sen-POOL-WP](https://github.com/maxx3105/HB-UNI-Sen-POOL-WP) | 0xFC60 | Pool-Wärmepumpen-Controller |
+            | [HB-UNI-Sen-EC](https://github.com/maxx3105/HB-UNI-Sen-EC) | 0xFC20 | EC-Sensor (Elektrische Leitfähigkeit) |
+            | [HB-UNI-Sen-TDS](https://github.com/maxx3105/HB-UNI-Sen-TDS) | 0xFC30 | TDS-Sensor (Total Dissolved Solids) |
