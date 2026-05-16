@@ -115,6 +115,12 @@ DEV_DESCRIPTION['"'"'HB-UNI-Sen-TDS'"'"']='"'"'TDS-Sensor'"'"';\
 DEV_PATHS['"'"'HB-UNI-Sen-TDS'"'"'] = new Object();\
 DEV_PATHS['"'"'HB-UNI-Sen-TDS'"'"']['"'"'50'"'"'] = '"'"'/config/img/devices/50/hb-uni-sen-tds_thumb.png'"'"';\
 DEV_PATHS['"'"'HB-UNI-Sen-TDS'"'"']['"'"'250'"'"'] = '"'"'/config/img/devices/250/hb-uni-sen-tds.png'"'"';\
+DEV_HIGHLIGHT['"'"'HB-LC-RGB-DW-CV'"'"'] = new Object();\
+DEV_LIST.push('"'"'HB-LC-RGB-DW-CV'"'"');\
+DEV_DESCRIPTION['"'"'HB-LC-RGB-DW-CV'"'"']='"'"'RGB + Dual-White 5-Kanal PWM Dimmer'"'"';\
+DEV_PATHS['"'"'HB-LC-RGB-DW-CV'"'"'] = new Object();\
+DEV_PATHS['"'"'HB-LC-RGB-DW-CV'"'"']['"'"'50'"'"'] = '"'"'/config/img/devices/50/114_hm-lc-dim1t-fm-lf_thumb.png'"'"';\
+DEV_PATHS['"'"'HB-LC-RGB-DW-CV'"'"']['"'"'250'"'"'] = '"'"'/config/img/devices/250/114_hm-lc-dim1t-fm-lf.png'"'"';\
 if (typeof switch_on  === '"'"'undefined'"'"') { var switch_on  = '"'"'Ein'"'"'; }\
 if (typeof switch_off === '"'"'undefined'"'"') { var switch_off = '"'"'Aus'"'"'; }\
 if (typeof switch_on_english  === '"'"'undefined'"'"') { var switch_on_english  = '"'"'On'"'"';  }\
@@ -144,7 +150,7 @@ ${WEBUI_INSERT}" "${WEBUI_JS}"
     else
       ELVST_INSERT_LINE=$((ELVST_LINE - 1))
       sed -i "${ELVST_INSERT_LINE}a\\
-elvST['HB_GENERIC'] = 'Pool Waermepumpe';elvST['HB_GENERIC|HB_PH'] = '\${stringTableHbPh}';elvST['HB_GENERIC|HB_ORP'] = '\${stringTableHbOrp}';elvST['HB_GENERIC|HB_ORPOFFSET'] = '\${stringTableHbOrpOffset}';elvST['HB_GENERIC|HB_TOGGLEWAITTIME'] = '\${stringTableHbToggleWaitTime}';elvST['HB_GENERIC|HB_FLOWRATE_QFACTOR'] = '\${stringTableHbFlowrateQFactor}';elvST['HB_GENERIC|HB_FLOW_RATE'] = '\${stringTableHbFlowrate}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_1'] = '\${stringTableHbTemperatureOffset1}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_2'] = '\${stringTableHbTemperatureOffset2}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_3'] = '\${stringTableHbTemperatureOffset3}';elvST['HB_GENERIC|UNI_PRESSURE'] = '\${stringTableUniPressure}';elvST['HB_GENERIC|INFO_MSG=HB_OPERATION_NORMAL'] = '\${stringTableHBOperationNormal}';elvST['HB_GENERIC|INFO_MSG=HB_OPERATION_CALIBRATION'] = '\${stringTableHBOperationCalibration}';elvST['HB_GENERIC|INFO_MSG=HB_CALIBRATION_INVALID'] = '\${stringTableHBCalibrationInvalid}';elvST['HB_GENERIC|HB_EC'] = '\${stringTableHbEc}';elvST['HB_GENERIC|TEMPERATURE_OFFSET'] = '\${stringTableTemperatureOffset}';elvST['HB_TDS'] = 'TDS-Sensor';elvST['HB_GENERIC|HB_TDS'] = '\${stringTableHbTds}';" "${WEBUI_JS}"
+elvST['HB_GENERIC'] = 'Pool Waermepumpe';elvST['HB_GENERIC|HB_PH'] = '\${stringTableHbPh}';elvST['HB_GENERIC|HB_ORP'] = '\${stringTableHbOrp}';elvST['HB_GENERIC|HB_ORPOFFSET'] = '\${stringTableHbOrpOffset}';elvST['HB_GENERIC|HB_TOGGLEWAITTIME'] = '\${stringTableHbToggleWaitTime}';elvST['HB_GENERIC|HB_FLOWRATE_QFACTOR'] = '\${stringTableHbFlowrateQFactor}';elvST['HB_GENERIC|HB_FLOW_RATE'] = '\${stringTableHbFlowrate}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_1'] = '\${stringTableHbTemperatureOffset1}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_2'] = '\${stringTableHbTemperatureOffset2}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_3'] = '\${stringTableHbTemperatureOffset3}';elvST['HB_GENERIC|UNI_PRESSURE'] = '\${stringTableUniPressure}';elvST['HB_GENERIC|INFO_MSG=HB_OPERATION_NORMAL'] = '\${stringTableHBOperationNormal}';elvST['HB_GENERIC|INFO_MSG=HB_OPERATION_CALIBRATION'] = '\${stringTableHBOperationCalibration}';elvST['HB_GENERIC|INFO_MSG=HB_CALIBRATION_INVALID'] = '\${stringTableHBCalibrationInvalid}';elvST['HB_GENERIC|HB_EC'] = '\${stringTableHbEc}';elvST['HB_GENERIC|TEMPERATURE_OFFSET'] = '\${stringTableTemperatureOffset}';elvST['HB_TDS'] = 'TDS-Sensor';elvST['HB_GENERIC|HB_TDS'] = '\${stringTableHbTds}';elvST['DIMMER|BUTTON_ON_BEHAVIOR'] = '\${stringTableButtonOnBehavior}';elvST['DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR'] = '\${stringTableButtonOnBehavior}';elvST['DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC'] = '\${stringTableCharacteristic}';" "${WEBUI_JS}"
       echo "### webui.js elvST patched at line ${ELVST_INSERT_LINE}" | tee -a $TMP_LOGFILE
     fi
   fi
@@ -157,8 +163,12 @@ webui_revoke()
   sed -i '/typeof switch_on.*undefined/d;/typeof switch_off.*undefined/d' "${WEBUI_JS}"
   sed -i '/typeof switch_on_english/d;/typeof switch_off_english/d' "${WEBUI_JS}"
   sed -i '/HB-UNI-Sen-TDS/d' "${WEBUI_JS}"
+  sed -i '/HB-LC-RGB-DW-CV/d' "${WEBUI_JS}"
   sed -i "/elvST\['HB_GENERIC'\]/d" "${WEBUI_JS}"
-  sed -i "/elvST\['HB_TDS'\]/d" "${WEBUI_JS}" 
+  sed -i "/elvST\['HB_TDS'\]/d" "${WEBUI_JS}"
+  sed -i "/elvST\['DIMMER|BUTTON_ON_BEHAVIOR'\]/d" "${WEBUI_JS}"
+  sed -i "/elvST\['DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR'\]/d" "${WEBUI_JS}"
+  sed -i "/elvST\['DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC'\]/d" "${WEBUI_JS}"
   echo "### webui.js revoked" | tee -a $TMP_LOGFILE
 }
 

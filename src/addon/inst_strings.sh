@@ -127,6 +127,11 @@ do_install() {
     add_st "HB_GENERIC|HB_EC"                             "stringTableHbEc"
     add_st "HB_GENERIC|TEMPERATURE_OFFSET"                "stringTableTemperatureOffset"
 
+    # HB-LC-RGB-DW-CV
+    add_st "DIMMER|BUTTON_ON_BEHAVIOR"                    "stringTableButtonOnBehavior"
+    add_st "DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR"     "stringTableButtonOnBehavior"
+    add_st "DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC"         "stringTableCharacteristic"
+
     # Deutsch – in extension.js UND stringtable.js
     # (extension.js = Statusansicht, stringtable.js = Kanalparameter-Ansicht)
     for F in "${EXTENSION_DE}" "${STRINGTABLE_JS_DE}"; do
@@ -148,6 +153,8 @@ do_install() {
         add_tr "${F}" "stringTableHbEc"                   "Elektrische Leitf%E4higkeit"
         add_tr "${F}" "stringTableTemperatureOffset"       "Temperatur-Offset"
         add_tr "${F}" "stringTableHbTds"                   "TDS-Wert"
+        add_tr "${F}" "stringTableButtonOnBehavior"        "Verhalten beim Einschalten"
+        add_tr "${F}" "stringTableCharacteristic"          "Dimmkennlinie"
     done
     # infoStatusControlLbl: nur in extension.js (dort bereits als Standard vorhanden,
     # wird durch den Komma-Fix jetzt korrekt aufgeloest)
@@ -174,6 +181,8 @@ do_install() {
         add_tr "${F}" "stringTableHbEc"                   "Electrical conductivity"
         add_tr "${F}" "stringTableTemperatureOffset"       "Temperature offset"
         add_tr "${F}" "stringTableHbTds"                   "TDS value"
+        add_tr "${F}" "stringTableButtonOnBehavior"        "Power-on behavior"
+        add_tr "${F}" "stringTableCharacteristic"          "Dimming characteristic"
     done
     add_tr "${EXTENSION_EN}" "infoStatusControlLblOpen"   "Open"
     add_tr "${EXTENSION_EN}" "infoStatusControlLblClosed" "Closed"
@@ -194,10 +203,16 @@ do_uninstall() {
         del_tr "${F}" "stringTableHbTemperatureOffset3"
         del_tr "${F}" "stringTableHbTds"
         del_tr "${F}" "stringTableHbEc"
+        del_tr "${F}" "stringTableButtonOnBehavior"
+        del_tr "${F}" "stringTableCharacteristic"
     done
     del_st "HB_GENERIC|HB_TDS"
     del_st "HB_GENERIC|HB_EC"
     del_st "HB_GENERIC|TEMPERATURE_OFFSET"
+    # HB-LC-RGB-DW-CV
+    del_st "DIMMER|BUTTON_ON_BEHAVIOR"
+    del_st "DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR"
+    del_st "DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC"
     del_tr "${EXTENSION_DE}" "infoStatusControlLblOpen"
     del_tr "${EXTENSION_DE}" "infoStatusControlLblClosed"
     del_tr "${EXTENSION_EN}" "infoStatusControlLblOpen"
