@@ -13,11 +13,11 @@ Basiert auf [AskSin++](https://github.com/pa-pa/AskSinPP) von [pa-pa](https://gi
 
 | Gerät | Modell-ID | Beschreibung |
 |-------|-----------|--------------|
-| [HB-UNI-Sen-POOL-WP](https://github.com/maxx3105/HB-UNI-Sen-POOL-WP) | 0xFC60 | Pool-Wärmepumpen-Controller |
 | [HB-UNI-Sen-EC](https://github.com/maxx3105/HB-UNI-Sen-EC) | 0xFC20 | EC-Sensor (Elektrische Leitfähigkeit) |
 | [HB-UNI-Sen-TDS](https://github.com/maxx3105/HB-UNI-Sen-TDS) | 0xFC30 | TDS-Sensor (Total Dissolved Solids) |
-| [HB-LC-RGB-DW-CV](https://github.com/maxx3105/HB-LC-RGB-DW-CV) | 0xFC66 | RGB + Dual-White 5-Kanal PWM Dimmer (STM32) |
+| [HB-UNI-Sen-POOL-WP](https://github.com/maxx3105/HB-UNI-Sen-POOL-WP) | 0xFC60 | Pool-Wärmepumpen-Controller |
 | [HB-LC-Dim5-VIVA-CV](https://github.com/maxx3105/HB-LC-Dim5-VIVA-CV) | 0xFC65 | Vivarium-Controller 5-Kanal PWM (Aquarium/Terrarium-Tageslicht + Mondzyklus, STM32) |
+| [HB-LC-RGB-DW-CV](https://github.com/maxx3105/HB-LC-RGB-DW-CV) | 0xFC66 | RGB + Dual-White 5-Kanal PWM Dimmer (STM32) |
 
 ---
 
