@@ -125,8 +125,8 @@ DEV_HIGHLIGHT['"'"'HB-LC-Dim5-VIVA-CV'"'"'] = new Object();\
 DEV_LIST.push('"'"'HB-LC-Dim5-VIVA-CV'"'"');\
 DEV_DESCRIPTION['"'"'HB-LC-Dim5-VIVA-CV'"'"']='"'"'Vivarium 5-Kanal LED PWM (Tageslicht + Mond)'"'"';\
 DEV_PATHS['"'"'HB-LC-Dim5-VIVA-CV'"'"'] = new Object();\
-DEV_PATHS['"'"'HB-LC-Dim5-VIVA-CV'"'"']['"'"'50'"'"'] = '"'"'/config/img/devices/50/114_hm-lc-dim1t-fm-lf_thumb.png'"'"';\
-DEV_PATHS['"'"'HB-LC-Dim5-VIVA-CV'"'"']['"'"'250'"'"'] = '"'"'/config/img/devices/250/114_hm-lc-dim1t-fm-lf.png'"'"';\
+DEV_PATHS['"'"'HB-LC-Dim5-VIVA-CV'"'"']['"'"'50'"'"'] = '"'"'/config/img/devices/50/hb-lc-dim5-viva-cv_thumb.png'"'"';\
+DEV_PATHS['"'"'HB-LC-Dim5-VIVA-CV'"'"']['"'"'250'"'"'] = '"'"'/config/img/devices/250/hb-lc-dim5-viva-cv.png'"'"';\
 if (typeof switch_on  === '"'"'undefined'"'"') { var switch_on  = '"'"'Ein'"'"'; }\
 if (typeof switch_off === '"'"'undefined'"'"') { var switch_off = '"'"'Aus'"'"'; }\
 if (typeof switch_on_english  === '"'"'undefined'"'"') { var switch_on_english  = '"'"'On'"'"';  }\
@@ -225,7 +225,7 @@ ${WEBUI_INSERT}" "${WEBUI_JS}"
     else
       ELVST_INSERT_LINE=$((ELVST_LINE - 1))
       sed -i "${ELVST_INSERT_LINE}a\\
-elvST['HB_GENERIC'] = 'Pool Waermepumpe';elvST['HB_GENERIC|HB_PH'] = '\${stringTableHbPh}';elvST['HB_GENERIC|HB_ORP'] = '\${stringTableHbOrp}';elvST['HB_GENERIC|HB_ORPOFFSET'] = '\${stringTableHbOrpOffset}';elvST['HB_GENERIC|HB_TOGGLEWAITTIME'] = '\${stringTableHbToggleWaitTime}';elvST['HB_GENERIC|HB_FLOWRATE_QFACTOR'] = '\${stringTableHbFlowrateQFactor}';elvST['HB_GENERIC|HB_FLOW_RATE'] = '\${stringTableHbFlowrate}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_1'] = '\${stringTableHbTemperatureOffset1}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_2'] = '\${stringTableHbTemperatureOffset2}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_3'] = '\${stringTableHbTemperatureOffset3}';elvST['HB_GENERIC|UNI_PRESSURE'] = '\${stringTableUniPressure}';elvST['HB_GENERIC|INFO_MSG=HB_OPERATION_NORMAL'] = '\${stringTableHBOperationNormal}';elvST['HB_GENERIC|INFO_MSG=HB_OPERATION_CALIBRATION'] = '\${stringTableHBOperationCalibration}';elvST['HB_GENERIC|INFO_MSG=HB_CALIBRATION_INVALID'] = '\${stringTableHBCalibrationInvalid}';elvST['HB_GENERIC|HB_EC'] = '\${stringTableHbEc}';elvST['HB_GENERIC|TEMPERATURE_OFFSET'] = '\${stringTableTemperatureOffset}';elvST['HB_TDS'] = 'TDS-Sensor';elvST['HB_GENERIC|HB_TDS'] = '\${stringTableHbTds}';elvST['DIMMER|BUTTON_ON_BEHAVIOR'] = '\${stringTableButtonOnBehavior}';elvST['DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR'] = '\${stringTableButtonOnBehavior}';elvST['DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC'] = '\${stringTableCharacteristic}';" "${WEBUI_JS}"
+elvST['HB_GENERIC'] = 'Pool Waermepumpe';elvST['HB_GENERIC|HB_PH'] = '\${stringTableHbPh}';elvST['HB_GENERIC|HB_ORP'] = '\${stringTableHbOrp}';elvST['HB_GENERIC|HB_ORPOFFSET'] = '\${stringTableHbOrpOffset}';elvST['HB_GENERIC|HB_TOGGLEWAITTIME'] = '\${stringTableHbToggleWaitTime}';elvST['HB_GENERIC|HB_FLOWRATE_QFACTOR'] = '\${stringTableHbFlowrateQFactor}';elvST['HB_GENERIC|HB_FLOW_RATE'] = '\${stringTableHbFlowrate}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_1'] = '\${stringTableHbTemperatureOffset1}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_2'] = '\${stringTableHbTemperatureOffset2}';elvST['HB_GENERIC|TEMPERATURE_OFFSET_3'] = '\${stringTableHbTemperatureOffset3}';elvST['HB_GENERIC|UNI_PRESSURE'] = '\${stringTableUniPressure}';elvST['HB_GENERIC|INFO_MSG=HB_OPERATION_NORMAL'] = '\${stringTableHBOperationNormal}';elvST['HB_GENERIC|INFO_MSG=HB_OPERATION_CALIBRATION'] = '\${stringTableHBOperationCalibration}';elvST['HB_GENERIC|INFO_MSG=HB_CALIBRATION_INVALID'] = '\${stringTableHBCalibrationInvalid}';elvST['HB_GENERIC|HB_EC'] = '\${stringTableHbEc}';elvST['HB_GENERIC|TEMPERATURE_OFFSET'] = '\${stringTableTemperatureOffset}';elvST['HB_TDS'] = 'TDS-Sensor';elvST['HB_GENERIC|HB_TDS'] = '\${stringTableHbTds}';elvST['DIMMER|BUTTON_ON_BEHAVIOR'] = '\${stringTableButtonOnBehavior}';elvST['DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR'] = '\${stringTableButtonOnBehavior}';elvST['DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC'] = '\${stringTableCharacteristic}';elvST['MAINTENANCE|LATITUDE'] = '\${stringTableHbLatitude}';elvST['MAINTENANCE|LONGITUDE'] = '\${stringTableHbLongitude}';elvST['MAINTENANCE|TIMEZONE_HOURS'] = '\${stringTableHbTimezoneHours}';elvST['MAINTENANCE|SUN_OFFSET_MIN'] = '\${stringTableHbSunOffsetMin}';elvST['MAINTENANCE|MOON_OFFSET_DAYS'] = '\${stringTableHbMoonOffsetDays}';elvST['MAINTENANCE|CURRENT_TIME'] = '\${stringTableHbCurrentTime}';" "${WEBUI_JS}"
       echo "### webui.js elvST patched at line ${ELVST_INSERT_LINE}" | tee -a $TMP_LOGFILE
     fi
   fi
@@ -245,6 +245,12 @@ webui_revoke()
   sed -i "/elvST\['DIMMER|BUTTON_ON_BEHAVIOR'\]/d" "${WEBUI_JS}"
   sed -i "/elvST\['DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR'\]/d" "${WEBUI_JS}"
   sed -i "/elvST\['DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC'\]/d" "${WEBUI_JS}"
+  sed -i "/elvST\['MAINTENANCE|LATITUDE'\]/d" "${WEBUI_JS}"
+  sed -i "/elvST\['MAINTENANCE|LONGITUDE'\]/d" "${WEBUI_JS}"
+  sed -i "/elvST\['MAINTENANCE|TIMEZONE_HOURS'\]/d" "${WEBUI_JS}"
+  sed -i "/elvST\['MAINTENANCE|SUN_OFFSET_MIN'\]/d" "${WEBUI_JS}"
+  sed -i "/elvST\['MAINTENANCE|MOON_OFFSET_DAYS'\]/d" "${WEBUI_JS}"
+  sed -i "/elvST\['MAINTENANCE|CURRENT_TIME'\]/d" "${WEBUI_JS}"
   echo "### webui.js revoked" | tee -a $TMP_LOGFILE
 }
 
