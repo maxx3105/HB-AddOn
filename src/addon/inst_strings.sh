@@ -132,6 +132,14 @@ do_install() {
     add_st "DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR"     "stringTableButtonOnBehavior"
     add_st "DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC"         "stringTableCharacteristic"
 
+    # HB-LC-Dim5-VIVA-CV (Master-Parameter dimmer_dev_master)
+    add_st "MAINTENANCE|LATITUDE"                          "stringTableHbLatitude"
+    add_st "MAINTENANCE|LONGITUDE"                         "stringTableHbLongitude"
+    add_st "MAINTENANCE|TIMEZONE_HOURS"                    "stringTableHbTimezoneHours"
+    add_st "MAINTENANCE|SUN_OFFSET_MIN"                    "stringTableHbSunOffsetMin"
+    add_st "MAINTENANCE|MOON_OFFSET_DAYS"                  "stringTableHbMoonOffsetDays"
+    add_st "MAINTENANCE|CURRENT_TIME"                      "stringTableHbCurrentTime"
+
     # Deutsch – in extension.js UND stringtable.js
     # (extension.js = Statusansicht, stringtable.js = Kanalparameter-Ansicht)
     for F in "${EXTENSION_DE}" "${STRINGTABLE_JS_DE}"; do
@@ -155,6 +163,12 @@ do_install() {
         add_tr "${F}" "stringTableHbTds"                   "TDS-Wert"
         add_tr "${F}" "stringTableButtonOnBehavior"        "Verhalten beim Einschalten"
         add_tr "${F}" "stringTableCharacteristic"          "Dimmkennlinie"
+        add_tr "${F}" "stringTableHbLatitude"              "Breitengrad"
+        add_tr "${F}" "stringTableHbLongitude"             "L%E4ngengrad"
+        add_tr "${F}" "stringTableHbTimezoneHours"         "Zeitzone (Stunden)"
+        add_tr "${F}" "stringTableHbSunOffsetMin"          "Sonnen-Offset (Minuten)"
+        add_tr "${F}" "stringTableHbMoonOffsetDays"        "Mond-Offset (Tage)"
+        add_tr "${F}" "stringTableHbCurrentTime"           "Aktuelle Zeit (UTC Unix-Epoch)"
     done
     # infoStatusControlLbl: nur in extension.js (dort bereits als Standard vorhanden,
     # wird durch den Komma-Fix jetzt korrekt aufgeloest)
@@ -183,6 +197,12 @@ do_install() {
         add_tr "${F}" "stringTableHbTds"                   "TDS value"
         add_tr "${F}" "stringTableButtonOnBehavior"        "Power-on behavior"
         add_tr "${F}" "stringTableCharacteristic"          "Dimming characteristic"
+        add_tr "${F}" "stringTableHbLatitude"              "Latitude"
+        add_tr "${F}" "stringTableHbLongitude"             "Longitude"
+        add_tr "${F}" "stringTableHbTimezoneHours"         "Timezone (hours)"
+        add_tr "${F}" "stringTableHbSunOffsetMin"          "Sun offset (minutes)"
+        add_tr "${F}" "stringTableHbMoonOffsetDays"        "Moon offset (days)"
+        add_tr "${F}" "stringTableHbCurrentTime"           "Current time (UTC Unix epoch)"
     done
     add_tr "${EXTENSION_EN}" "infoStatusControlLblOpen"   "Open"
     add_tr "${EXTENSION_EN}" "infoStatusControlLblClosed" "Closed"
@@ -205,6 +225,12 @@ do_uninstall() {
         del_tr "${F}" "stringTableHbEc"
         del_tr "${F}" "stringTableButtonOnBehavior"
         del_tr "${F}" "stringTableCharacteristic"
+        del_tr "${F}" "stringTableHbLatitude"
+        del_tr "${F}" "stringTableHbLongitude"
+        del_tr "${F}" "stringTableHbTimezoneHours"
+        del_tr "${F}" "stringTableHbSunOffsetMin"
+        del_tr "${F}" "stringTableHbMoonOffsetDays"
+        del_tr "${F}" "stringTableHbCurrentTime"
     done
     del_st "HB_GENERIC|HB_TDS"
     del_st "HB_GENERIC|HB_EC"
@@ -213,6 +239,13 @@ do_uninstall() {
     del_st "DIMMER|BUTTON_ON_BEHAVIOR"
     del_st "DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR"
     del_st "DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC"
+    # HB-LC-Dim5-VIVA-CV
+    del_st "MAINTENANCE|LATITUDE"
+    del_st "MAINTENANCE|LONGITUDE"
+    del_st "MAINTENANCE|TIMEZONE_HOURS"
+    del_st "MAINTENANCE|SUN_OFFSET_MIN"
+    del_st "MAINTENANCE|MOON_OFFSET_DAYS"
+    del_st "MAINTENANCE|CURRENT_TIME"
     del_tr "${EXTENSION_DE}" "infoStatusControlLblOpen"
     del_tr "${EXTENSION_DE}" "infoStatusControlLblClosed"
     del_tr "${EXTENSION_EN}" "infoStatusControlLblOpen"
