@@ -17,6 +17,7 @@ Basiert auf [AskSin++](https://github.com/pa-pa/AskSinPP) von [pa-pa](https://gi
 | [HB-UNI-Sen-EC](https://github.com/maxx3105/HB-UNI-Sen-EC) | 0xFC20 | EC-Sensor (Elektrische Leitfähigkeit) |
 | [HB-UNI-Sen-TDS](https://github.com/maxx3105/HB-UNI-Sen-TDS) | 0xFC30 | TDS-Sensor (Total Dissolved Solids) |
 | [HB-LC-RGB-DW-CV](https://github.com/maxx3105/HB-LC-RGB-DW-CV) | 0xFC66 | RGB + Dual-White 5-Kanal PWM Dimmer (STM32) |
+| [HB-LC-Dim5-VIVA-CV](https://github.com/maxx3105/HB-LC-Dim5-VIVA-CV) | 0xFC65 | Vivarium-Controller 5-Kanal PWM (Aquarium/Terrarium-Tageslicht + Mondzyklus, STM32) |
 
 ---
 
@@ -73,9 +74,11 @@ HB-AddOn/
 │   │   │   └── common/
 │   │   │       └── ic_deviceparameters.cgi.patch
 │   │   ├── www/
-│   │   │   └── config/img/devices/
-│   │   │       ├── 50/        # Gerätebilder 50×50px (thumb)
-│   │   │       └── 250/       # Gerätebilder 250×250px
+│   │   │   ├── config/img/devices/
+│   │   │   │   ├── 50/        # Gerätebilder 50×50px (thumb)
+│   │   │   │   └── 250/       # Gerätebilder 250×250px
+│   │   │   └── rega/esp/controls/  # optionale Custom-WebUI-Renderer (.fn)
+│   │   │       └── hbprogram.fn    # Renderer für HB_PROGRAM-Channel-Typ
 │   │   ├── devdb.csv          # Gerät → Bildname Mapping
 │   │   ├── inst_devdb.sh      # DEVDB.tcl Install/Uninstall
 │   │   ├── inst_easymodes.sh  # Easymodes Install/Uninstall
@@ -191,6 +194,12 @@ Alle vier müssen befüllt sein damit Übersetzungen in allen WebUI-Ansichten fu
 #### webui.js Modifikation
 
 Da `/www` auf OpenCCU read-only gemountet ist, verwendet das Addon `sed` mit Marker-basierter Erkennung statt `patch`. Das verhindert Probleme mit abweichenden Zeilennummern zwischen CCU-Firmware-Versionen.
+
+#### Custom Channel-Typ-Renderer (HB_PROGRAM)
+
+Für Geräte mit eigenem Channel-Typ-String (z.B. `HB_PROGRAM` beim Viva-Controller) liefert das Addon einen eigenen Renderer unter `src/addon/www/rega/esp/controls/`. Der Renderer wird beim Install nach `/www/rega/esp/controls/` kopiert; gleichzeitig patcht `dpc_apply()` in `rc.d/hb-addon` den Dispatcher (`/www/rega/esp/datapointconfigurator.fn`), damit Datenpunkte mit `control="HB_PROGRAM.*"` an den Custom-Renderer geroutet werden statt an den eQ-3-Standard-Renderer für `RGBW_AUTOMATIC`.
+
+Vorteil gegenüber dem RGBW_AUTOMATIC-Channel-Typ: das Programm-Dropdown zeigt **eigene Items** (z.B. Biotop-Namen wie "Süßwasser", "Meerwasser") statt der fest verdrahteten "Langsamer Durchlauf"/"Lagerfeuer"/etc. von eQ-3.
 
 ---
 
