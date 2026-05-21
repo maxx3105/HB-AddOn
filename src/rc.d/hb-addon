@@ -40,8 +40,16 @@ check_ccu_fw_version()
 get_latest_version()
 {
   local latest=""
+  # wget mit --no-check-certificate (CCU SSL-Cert-Store ist oft veraltet)
   if which wget >/dev/null 2>&1; then
-    latest=$(wget -q -T 5 -O - "${GITHUB_RELEASES_URL}" 2>/dev/null \
+    latest=$(wget -q --no-check-certificate -T 10 -O - "${GITHUB_RELEASES_URL}" 2>/dev/null \
+      | grep '"tag_name"' \
+      | head -1 \
+      | sed 's/.*"tag_name"[[:space:]]*:[[:space:]]*"v\{0,1\}\([^"]*\)".*/\1/')
+  fi
+  # Fallback auf curl falls wget leer/nicht vorhanden
+  if [ -z "${latest}" ] && which curl >/dev/null 2>&1; then
+    latest=$(curl -k -s -m 10 "${GITHUB_RELEASES_URL}" 2>/dev/null \
       | grep '"tag_name"' \
       | head -1 \
       | sed 's/.*"tag_name"[[:space:]]*:[[:space:]]*"v\{0,1\}\([^"]*\)".*/\1/')

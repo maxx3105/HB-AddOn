@@ -133,6 +133,15 @@ do_install() {
     add_st "DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC"         "stringTableCharacteristic"
 
     # HB-LC-Dim5-VIVA-CV (Master-Parameter dimmer_dev_master)
+    # Geraete-Master-Parameter werden ohne Channel-Praefix gemappt
+    # (wie z.B. TEMPERATURE_OFFSET_1 weiter oben). MAINTENANCE|*-Variante
+    # als Backup fuer Status-Grid-Anzeige.
+    add_st "LATITUDE"                                      "stringTableHbLatitude"
+    add_st "LONGITUDE"                                     "stringTableHbLongitude"
+    add_st "TIMEZONE_HOURS"                                "stringTableHbTimezoneHours"
+    add_st "SUN_OFFSET_MIN"                                "stringTableHbSunOffsetMin"
+    add_st "MOON_OFFSET_DAYS"                              "stringTableHbMoonOffsetDays"
+    add_st "CURRENT_TIME"                                  "stringTableHbCurrentTime"
     add_st "MAINTENANCE|LATITUDE"                          "stringTableHbLatitude"
     add_st "MAINTENANCE|LONGITUDE"                         "stringTableHbLongitude"
     add_st "MAINTENANCE|TIMEZONE_HOURS"                    "stringTableHbTimezoneHours"
@@ -240,6 +249,12 @@ do_uninstall() {
     del_st "DUAL_WHITE_BRIGHTNESS|BUTTON_ON_BEHAVIOR"
     del_st "DUAL_WHITE_BRIGHTNESS|CHARACTERISTIC"
     # HB-LC-Dim5-VIVA-CV
+    del_st "LATITUDE"
+    del_st "LONGITUDE"
+    del_st "TIMEZONE_HOURS"
+    del_st "SUN_OFFSET_MIN"
+    del_st "MOON_OFFSET_DAYS"
+    del_st "CURRENT_TIME"
     del_st "MAINTENANCE|LATITUDE"
     del_st "MAINTENANCE|LONGITUDE"
     del_st "MAINTENANCE|TIMEZONE_HOURS"
