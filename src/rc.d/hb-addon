@@ -441,22 +441,12 @@ case "$1" in
     ;;
 
     info)
-      INSTALLED_VERSION=$(cat ${ADDON_DIR}/VERSION 2>/dev/null | tr -d '[:space:]')
-      LATEST_VERSION=$(get_latest_version)
-
       echo "Info: <center><b>${ADDON_DISPLAY_NAME}</b></center><br />"
-      echo "Info: <center><img src='../addons/${ADDON_NAME}/${ADDON_NAME}.png'></img></center>"
-      echo "Info: <center><a href='https://github.com/${GITHUB_REPO}' target='_blank'>https://github.com/${GITHUB_REPO}</a></center>"
-      echo "Version: ${INSTALLED_VERSION}"
-      if [ -n "${LATEST_VERSION}" ] && [ "${LATEST_VERSION}" != "${INSTALLED_VERSION}" ]; then
-        echo "Available: ${LATEST_VERSION}"
-        echo "Info: <br/><b>Update verfuegbar!</b> Installiert: ${INSTALLED_VERSION} &rarr; Verfuegbar: ${LATEST_VERSION}"
-        echo "Download: https://github.com/${GITHUB_REPO}/releases/download/v${LATEST_VERSION}/hb-addon-${LATEST_VERSION}.tgz"
-      else
-        echo "Available: ${INSTALLED_VERSION}"
-      fi
+      echo "Info: <center><img src='../addons/${ADDON_NAME}/${ADDON_NAME}.png'></img></center><br/><a target='_blank' href='https://github.com/${GITHUB_REPO}'>https://github.com/${GITHUB_REPO}</a>"
+      echo "Version: $(cat ${ADDON_DIR}/VERSION 2>/dev/null | tr -d '[:space:]')"
       echo "Name: ${ADDON_DISPLAY_NAME}"
       echo "Operations: uninstall"
+      echo "Update: /addons/${ADDON_NAME}/update-check.cgi"
     ;;
 
     *)

@@ -40,6 +40,7 @@ jobs:
           chmod +x src/update_script
           chmod +x src/rc.d/hb-addon
           chmod +x src/addon/inst_*.sh
+          chmod +x src/addon/update-check.cgi
 
       - name: Build tgz
         run: |

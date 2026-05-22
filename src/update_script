@@ -28,6 +28,8 @@ chmod +x ${RC_DIR}/$ADDON_NAME
 mkdir -p ${ADDON_DIR}
 cp -af addon/* ${ADDON_DIR}/
 chmod 755 ${ADDON_DIR}
+chmod +x ${ADDON_DIR}/update-check.cgi 2>/dev/null
+chmod +x ${ADDON_DIR}/inst_*.sh 2>/dev/null
 
 sync
 
