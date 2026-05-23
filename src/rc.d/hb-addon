@@ -277,6 +277,55 @@ do_patch()
   echo "- done" | tee -a $TMP_LOGFILE | tee -a $TMP_ERRFILE
 }
 
+# Prueft, ob ein anderes installiertes Addon dieselbe Zieldatei modifiziert.
+# Erkennt das ueber: 1) gleichnamiges Patch-File irgendwo unter <addon>/patch/
+#                    2) rc.d-Script eines anderen Addons referenziert den Dateinamen
+# Wird vor jedem REVOKE eines geteilten Code-Mutation-Patches aufgerufen, um zu
+# verhindern, dass wir die Aenderung eines anderen Addons mitloeschen, weil die
+# eingefuegte Zeile byte-identisch ist und nicht zugeordnet werden kann.
+other_addon_touches()
+{
+  target=$1
+  for addon_dir in /usr/local/addons/*/; do
+    name=$(basename "$addon_dir")
+    [ "$name" = "$ADDON_NAME" ] && continue
+    [ "$name" = "${ADDON_NAME}-new" ] && continue
+    if [ -d "${addon_dir}patch" ] && find "${addon_dir}patch" -name "${target}.patch" 2>/dev/null | grep -q .; then
+      echo "### other addon '${name}' provides ${target}.patch" | tee -a $TMP_LOGFILE
+      return 0
+    fi
+  done
+  for rc in /usr/local/etc/config/rc.d/*; do
+    rcname=$(basename "$rc")
+    [ "$rcname" = "$ADDON_NAME" ] && continue
+    [ -f "$rc" ] || continue
+    if grep -q "$target" "$rc" 2>/dev/null; then
+      echo "### other rc.d script '${rcname}' references ${target}" | tee -a $TMP_LOGFILE
+      return 0
+    fi
+  done
+  return 1
+}
+
+# Sicherer Revoke fuer geteilte Patches (Code-Mutationen, die byte-identisch
+# auch von anderen Addons angewendet werden). Skippt das Revoke, wenn ein
+# anderes Addon dieselbe Datei beruehrt - dadurch bleibt die Aenderung des
+# anderen Addons intakt. Bei alleiniger Installation wird normal revoked.
+do_safe_revoke()
+{
+  patchfile=$1
+  target=$(basename "$patchfile" .patch)
+  if other_addon_touches "$target"; then
+    echo "### Skipping REVOKE of $(basename $patchfile) - shared with other addon" | tee -a $TMP_LOGFILE | tee -a $TMP_ERRFILE
+    return 0
+  fi
+  echo "### REVOKE patch file $patchfile" | tee -a $TMP_LOGFILE | tee -a $TMP_ERRFILE
+  convert_lf "$patchfile"
+  cd /www
+  patch -N -R -p3 -i "$patchfile" >> $TMP_LOGFILE 2>>$TMP_ERRFILE
+  echo "- done" | tee -a $TMP_LOGFILE | tee -a $TMP_ERRFILE
+}
+
 patcher()
 {
   if [ "$1" = "APPLY" ]; then
@@ -291,7 +340,7 @@ patcher()
     webui_revoke
     dpc_revoke
     if [ -f "${PATCH_DIR}/${PATCHSUBDIR_COMMON}/ic_deviceparameters.cgi.patch" ]; then
-      do_patch "${PATCH_DIR}/${PATCHSUBDIR_COMMON}/ic_deviceparameters.cgi.patch" "REVOKE" "-R"
+      do_safe_revoke "${PATCH_DIR}/${PATCHSUBDIR_COMMON}/ic_deviceparameters.cgi.patch"
     fi
   else
     echo "Invalid patcher() param $1" | tee -a $TMP_LOGFILE | tee -a $TMP_ERRFILE
